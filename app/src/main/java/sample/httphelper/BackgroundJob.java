@@ -1,4 +1,4 @@
-package sample.narenderhttpurl.com.httpurlconnhelper.async;
+package sample.httphelper;
 
 public interface BackgroundJob<R> {
     R executeInBackground() throws Exception;

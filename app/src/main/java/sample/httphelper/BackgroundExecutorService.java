@@ -1,11 +1,14 @@
-package sample.narenderhttpurl.com.httpurlconnhelper.async;
+package sample.httphelper;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.support.annotation.NonNull;
-import com.aquevix.placesautocomplete.Constants;
 
-import java.util.concurrent.*;
+import java.util.concurrent.Executor;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public enum BackgroundExecutorService {
     INSTANCE;
@@ -21,7 +24,7 @@ public enum BackgroundExecutorService {
                 new ThreadFactory() {
                     @Override
                     public Thread newThread(@NonNull final Runnable r) {
-                        return new Thread(r, Constants.LOG_TAG + "Thread");
+                        return new Thread(r, "Thread");
                     }
                 });
         executor.allowCoreThreadTimeOut(true);

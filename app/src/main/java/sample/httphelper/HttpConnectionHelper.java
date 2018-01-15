@@ -1,4 +1,4 @@
-package sample.narenderhttpurl.com.httpurlconnhelper.async;
+package sample.httphelper;
 
 import android.content.ContentValues;
 
@@ -15,12 +15,8 @@ import java.net.URL;
 import java.net.URLEncoder;
 import java.util.Map;
 
-import sample.narenderhttpurl.com.httpurlconnhelper.async.RequestType;
-
 /**
  * HttpConnectionHelper
- *
- * @author dotkebi on 2016. 2. 19..
  */
 public class HttpConnectionHelper {
 
@@ -28,7 +24,6 @@ public class HttpConnectionHelper {
     private static final int RESPONSE_TIME = 15 * 1000; //15 SECONDS
 
     /**
-     *
      * @param requestType
      * @param url
      * @return
@@ -38,7 +33,6 @@ public class HttpConnectionHelper {
     }
 
     /**
-     *
      * @param requestType
      * @param url
      * @param header
@@ -49,7 +43,6 @@ public class HttpConnectionHelper {
     }
 
     /**
-     *
      * @param requestType
      * @param url
      * @param header
@@ -63,11 +56,15 @@ public class HttpConnectionHelper {
             conn.connect();
 
             //Write
-            OutputStream os = conn.getOutputStream();
-            if (body != null)
+            if (body != null) {
+                OutputStream os = conn.getOutputStream();
                 os.write(getQuery(body).getBytes());
-            os.flush();
-            os.close();
+                os.flush();
+                os.close();
+//                PrintWriter out = new PrintWriter(conn.getOutputStream());
+//                out.print(getQuery(body).getBytes());
+//                out.close();
+            }
 
             int responseCode = conn.getResponseCode();
             String responsedString = getResponse(conn);
@@ -116,11 +113,14 @@ public class HttpConnectionHelper {
     private HttpURLConnection getConnection(String url, RequestType requestType, ContentValues headerList) throws IOException {
         URL connectURL = new URL(url);
         HttpURLConnection conn = (HttpURLConnection) connectURL.openConnection();
-        conn.setDoInput(true);
-        conn.setDoOutput(true);
-        conn.setUseCaches(false);
-        conn.setDefaultUseCaches(false);
+//        conn.setDoInput(true);
+//        conn.setDoOutput(true);
+//        conn.setUseCaches(false);
+//        conn.setAllowUserInteraction(false);
+        conn.setConnectTimeout(RESPONSE_TIME);
+//        conn.setDefaultUseCaches(false);
         conn.setReadTimeout(RESPONSE_TIME);
+        conn.setRequestProperty("Content-Type", "application/json");//whatever you want
 
         if (requestType == RequestType.GET)
             conn.setRequestMethod("GET");

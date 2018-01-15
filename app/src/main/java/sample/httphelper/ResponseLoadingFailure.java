@@ -1,4 +1,4 @@
-package sample.narenderhttpurl.com.httpurlconnhelper.async;
+package sample.httphelper;
 
 /**
  * Created by ravishankeryadav on 12/1/16.

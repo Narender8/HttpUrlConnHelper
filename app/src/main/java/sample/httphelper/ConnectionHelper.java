@@ -1,13 +1,6 @@
-package sample.narenderhttpurl.com.httpurlconnhelper.async;
+package sample.httphelper;
 
 import android.content.ContentValues;
-
-import sample.narenderhttpurl.com.httpurlconnhelper.HttpConnectionHelper;
-import sample.narenderhttpurl.com.httpurlconnhelper.ResponseCallback;
-import sample.narenderhttpurl.com.httpurlconnhelper.ResponseLoadingFailure;
-import sample.narenderhttpurl.com.httpurlconnhelper.async.RequestType;
-import sample.narenderhttpurl.com.httpurlconnhelper.async.BackgroundExecutorService;
-import sample.narenderhttpurl.com.httpurlconnhelper.async.BackgroundJob;
 
 /**
  * Created by narendergusain on 12/6/16.
